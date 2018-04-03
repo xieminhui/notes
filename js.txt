@@ -1,1 +1,1 @@
-1.函数设置return，默认返回undefined。
+1.函数不设置return，默认返回undefined。
