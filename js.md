@@ -1,6 +1,6 @@
-#####1.函数不设置return，默认返回undefined。
+### 1.函数不设置return，默认返回undefined。
 
-##### 2.mvvm框架实现数据绑定的做法大概有3种：
+### 2.mvvm框架实现数据绑定的做法大概有3种：
 >发布者-订阅者模式也叫观察者模式(backbone.js)
 
 >脏值检查(angular.js)
