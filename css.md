@@ -3,7 +3,7 @@
 ### 2.[vertical-align详解](http://www.cnblogs.com/hykun/p/3937852.html)  
 
 ### 3.HTML常用的宽高等属性 
-```angular2html
+```
 <div id="divParent" style="padding: 8px; background-color:#CCC; position: relative;">  
         <div id="divChild" style="background-color:#C00; margin: 30px; padding: 10px;  
             height: 200px; width: 200px; border: solid 10px  #0000CC;">  
@@ -20,10 +20,20 @@
 2.1 clientLeft: div.padding.left外边缘到div.border.left外边缘距离 = border.left = 10.  
 2.2 clientTop同理。  
 2.3 clientWidth: div.content + div.padding.left = 200 +10 +10 = 220.  
-<<<<<<< HEAD
 2.4 clientHeight同理。  
 ![](div.png)  
 ![](parent.png)
-=======
-2.4 clientHeight同理。  
->>>>>>> af3e7f62630a06779952e309c012c384ad23fd5a
+---
+```
+<div id="divParent"  style="padding: 8px; background-color: #aaa; height:200px; width:300px; overflow:auto" >  
+       <div id="divChild" style="background-color: #0f0;height: 400px; width: 500px; border: solid 10px #f00;">  
+       </div>  
+   </div>  
+```
+3. scroll:  
+3.1 scrollWidth:元素内无内容或者内容不超过可视区，滚动不出现或不可用的情况下。scrollWidth=clientWidth，两者皆为内容可视区的宽度。
+    溢出或有滚动条 scrollwidth = div.width + div.border.(left/right) + parent.padding =
+    500 + 10*2 + 8= 528.  
+3.2 scrollHeigth同理。  
+3.3 scrollLeft:拖动进去的宽度。  
+3.4 scrollTop同理。
