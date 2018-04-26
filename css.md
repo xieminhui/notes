@@ -32,8 +32,8 @@
 ```
 3. scroll:  
 3.1 scrollWidth:元素内无内容或者内容不超过可视区，滚动不出现或不可用的情况下。scrollWidth=clientWidth，两者皆为内容可视区的宽度。
-    溢出或有滚动条 scrollwidth = div.width + div.border.(left/right) + parent.padding =
-    500 + 10*2 + 8= 528.  
+    溢出或有滚动条 divparent.scrollwidth = div.width + div.border.(left/right) + div.padding(left/right) + parent.padding =
+    500 + 10*2 + 0 + 8= 528.  
 3.2 scrollHeigth同理。  
 3.3 scrollLeft:拖动进去的宽度。  
 3.4 scrollTop同理。
