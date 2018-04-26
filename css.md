@@ -2,7 +2,7 @@
 或 http://snailsky.me/2014/08/20/%E6%B5%AE%E5%8A%A8%E5%92%8C%E5%AE%83%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9F%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%8A%80%E5%B7%A7%EF%BC%9F/
 ### 2.[vertical-align详解](http://www.cnblogs.com/hykun/p/3937852.html)  
 
-###3.HTML常用的宽高等属性 
+### 3.HTML常用的宽高等属性 
 ```angular2html
 <div id="divParent" style="padding: 8px; background-color:#CCC; position: relative;">  
         <div id="divChild" style="background-color:#C00; margin: 30px; padding: 10px;  
@@ -20,6 +20,10 @@
 2.1 clientLeft: div.padding.left外边缘到div.border.left外边缘距离 = border.left = 10.  
 2.2 clientTop同理。  
 2.3 clientWidth: div.content + div.padding.left = 200 +10 +10 = 220.  
+<<<<<<< HEAD
 2.4 clientHeight同理。  
 ![](div.png)  
 ![](parent.png)
+=======
+2.4 clientHeight同理。  
+>>>>>>> af3e7f62630a06779952e309c012c384ad23fd5a
