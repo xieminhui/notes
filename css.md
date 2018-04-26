@@ -19,7 +19,7 @@
 2. client:这个是div自己的事了  
 2.1 clientLeft: div.padding.left外边缘到div.border.left外边缘距离 = border.left = 10.  
 2.2 clientTop同理。  
-2.3 clientWidth: div.content + div.padding.left = 200 +10 +10 = 220.  
+2.3 clientWidth: div.content + div.padding = 200 +10 +10 = 220.  
 2.4 clientHeight同理。  
 ![](div.png)  
 ![](parent.png)
