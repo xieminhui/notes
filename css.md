@@ -25,8 +25,8 @@
 ![](parent.png)
 ---
 ```
-<div id="divParent"  style="padding: 8px; background-color: #aaa; height:200px; width:300px; overflow:auto" >  
-       <div id="divChild" style="background-color: #0f0;height: 400px; width: 500px; border: solid 10px #f00;">  
+<div id="divParent"  style="padding: 8px; background-color: #aaa; height:200px; width:300px; overflow:auto;position:reative" >  
+       <div id="divChild" style="background-color: #0f0;height: 400px; width: 500px; border: solid 10px #f00;positon:abosulte">  
        </div>  
    </div>  
 ```
@@ -37,3 +37,4 @@
 3.2 scrollHeigth同理。  
 3.3 scrollLeft:拖动进去的宽度。  
 3.4 scrollTop同理。
+4. left: left = div.margin.left外边缘到parent.border.left内边缘的距离(不计算border宽度);top同理。
