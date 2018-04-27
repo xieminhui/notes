@@ -37,4 +37,10 @@
 3.2 scrollHeigth同理。  
 3.3 scrollLeft:拖动进去的宽度。  
 3.4 scrollTop同理。
-4. left: left = div.margin.left外边缘到parent.border.left内边缘的距离(不计算border宽度);top同理。
+4. left: left = div.margin.left外边缘到parent.border.left内边缘的距离(不计算border宽度);top同理。  
+### 4.document.body.scrolltop一直都是0  
+> 页面具有 DTD（或者说指定了 DOCTYPE）时，使用 document.documentElement。
+  页面不具有 DTD（或者说没有指定了 DOCTYPE）时，使用 document.body。
+  但是我感觉好像没有起作用，终极无敌解决兼容方案:  
+  将`document.documentElement.scrollTop`替换`document.body.scrollTop`。
+ 
