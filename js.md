@@ -24,3 +24,26 @@
     用途：延迟计算，因为将多参累计之后再计算;函数复用性提高，即不用书写多个类似函数用于相同的计算。
     
    [科里化函数详解](https://github.com/mqyqingfeng/Blog/issues/42)
+### 4.数组排序  
+> sort():比较函数应该具有两个参数 a 和 b，其返回值如下：
+         
+         若 a 小于 b，在排序后的数组中 a 应该出现在 b 之前，则返回一个小于 0 的值。
+         若 a 等于 b，则返回 0。
+         若 a 大于 b，则返回一个大于 0 的值  
+```angular2html
+var drawerList = [
+    {url:'../../static/images/icon/coin-etc.png',name:'ETC',zhangfu:+122.33,price:228.253,about:3.3248,state:1},
+    {url:'../../static/images/icon/coin-bat.png',name:'BAT',zhangfu:-12.20,price:68.53,about:3.3248,state:0},
+    {url:'../../static/images/icon/coin-gram.png',name:'GRA',zhangfu:+121.13,price:68.3223022,about:3.3248,state:1},
+    {url:'../../static/images/icon/coin-eth.png',name:'ETH',zhangfu:+12.83,price:68.25232,about:3.3248,state:1},
+    {url:'../../static/images/icon/coin-bat.png',name:'BAT',zhangfu:-122.03,price:12.25322232,about:3.3248,state:0},
+    {url:'../../static/images/icon/coin-etc.png',name:'ETC',zhangfu:-12.13,price:68.253232,about:3.3248,state:0},
+    {url:'../../static/images/icon/coin-bat.png',name:'BAT',zhangfu:-9.03,price:68.253232,about:3.3248,state:0},
+]
+
+function sortList(a, b) {
+    return b.zhangfu - a.zhangfu
+}
+drawerList.sort(sortList)
+console.log(drawerList)
+```
