@@ -47,3 +47,27 @@ function sortList(a, b) {
 drawerList.sort(sortList)
 console.log(drawerList)
 ```
+### 5.正则表达式的先行断言和后行断言：  
+#### 正则表达式的先行断言和后行断言有四种：  
+```
+(?=pattern)零宽正向先行断言
+(?!pattern)零宽负向先行断言
+(?<=pattern)零宽正向后行断言
+(?<!pattern)零宽正向后行断言
+匹配字符中的某些字符，但是不占用字符，所以叫零宽
+```  
+- `(?=pattern)`正向先行断言  
+匹配字符串某个位置，紧跟后面的字符串能够匹配pattern。  
+`a stupid student study JavaScript`匹配`student`中的`stu`，但不能匹配上`stupid`中的`stu`，可以这样写`stu(?=dent)`；这样就匹配了
+`student`但是又没有消耗`dent`。
+- `(?!pattern)`负向先行断言  
+匹配字符串某个位置，紧跟后面的字符串不能匹配pattern。  
+`a stupid student study JavaScript`匹配除了`stupid student`之外的`stu`，可以写成`'a stupid student study JavaScript'.match(/stu(?!pid|dent)/)
+`
+- `(?<=pattern)`正向后行断言  
+匹配字符串某个位置，紧跟前面的字符串匹配`pattern`  
+`a stupid student study estuarine oceanography`匹配单词内部的`stu`,可以写成`(?<=\w)stu`;`\w`
+表示匹配除了空格和换行之外的单词。
+- `(?<!pattern)`负向后行断言  
+匹配字符串某个位置，紧跟前面的字符串不能匹配pattern  
+`a stupid student study estuarine oceanography`匹配单词开头的`stu`，可以写成`(?<!\w)stu`.
