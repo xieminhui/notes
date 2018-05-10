@@ -44,3 +44,6 @@
   但是我感觉好像没有起作用，终极无敌解决兼容方案:  
   将`document.documentElement.scrollTop`替换`document.body.scrollTop`。
  
+### 5.每天一种布局：
+1,左右两边固定宽度，中间自适应。
+https://codepen.io/xiexielala/pen/MGVKze
