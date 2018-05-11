@@ -47,3 +47,21 @@
 ### 5.每天一种布局：
 1,左右两边固定宽度，中间自适应。
 https://codepen.io/xiexielala/pen/MGVKze
+### 6.上下居中
+```
+<div class="wrap">
+    <div class="non-height">11111</div>
+</div>
+
+```
+1.设置父`display:table-cell vertical-align: middle`
+```
+
+.wrap {
+       width: 200px;
+       height: 300px;
+       border: 1px solid #000;
+       display: table-cell;
+       vertical-align: middle;
+}
+```
