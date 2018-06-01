@@ -48,21 +48,165 @@
 1,左右两边固定宽度，中间自适应。
 https://codepen.io/xiexielala/pen/MGVKze
 ### 6.上下居中
+[codepen演示](https://codepen.io/xiexielala/pen/yENEmE)
 ```
-<div class="wrap">
-    <div class="non-height">11111</div>
-</div>
-
+   .box{
+     display:inline-block;
+     margin: 5px;
+     width: 300px;
+     height:300px;
+     background:#3190e8;
+     position:relative;
+   }
+   .child{
+     background:red;
+   }
+   ```
+1.知道子元素高度，用绝对定位和margin
 ```
-1.设置父`display:table-cell vertical-align: middle`
-```
-
-.wrap {
-       width: 200px;
-       height: 300px;
-       border: 1px solid #000;
-       display: table-cell;
-       vertical-align: middle;
+<div class="box">
+     <div class="child" id ="one"></div>
+   </div>
+#one{
+  width:150px;
+  height:100px;
+  position:absolute;
+  top:50%;
+  margin-top:-50px;
 }
 ```
+2.绝对定位加transform，不用知道元素高度
+```
+<div class="box">
+     <div class="child" id ="two"></div>
+   </div>
+#two{
+    width:150px;
+     height:100px;
+     position:absolute;
+     top:50%;
+     transform: translate(0,-50%);
+   }
+
+```
+3.使用absolute 加margin，跟第一种是一样的，只是变成了百分比
+```
+<div class="box">
+  <div class="child" id ="three"></div>
+</div>
+#three{
+   width:50%;
+  height:30%;
+  position:absolute;
+  top:50%;
+  margin-top:-15%
+}
+```
+4.绝对定位结合margin: auto
+```
+<div class="box">
+  <div class="child" id ="four"></div>
+</div>
+#four{
+  width:150px;
+  height:100px;
+  position:absolute;
+  top:0;
+  bottom:0;
+  margin:auto;
+}
+```
+5.父元素使用padding,这是父元素是不设高度的，高度是子元素撑出来的
+```
+<div class="box fivebox">
+  <div class="child" id ="five"></div>
+</div>
+.fivebox{
+  height:auto;
+  padding:100px 0;
+}
+#five{
+  width:150px;
+  height:100px;
+}
+```
+6.vertical-align:middle,加一个空白span，高度100%
+```
+<div class="box">
+  <div class="child" id ="six"></div>
+  <span style="height:100%;width:1px; vertical-align:middle;display:inline-block;"></span>
+</div>
+#six{
+    width: 150px;
+    height: 100px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+```
+7.vertical-align:middle，line-height = height
+```
+<div class="box sevenbox">
+  <div class="child" id ="seven"></div>
+</div>
+.sevenbox{
+  line-height:300px;
+
+}
+#seven{
+  width: 150px;
+    height: 100px;
+  display:inline-block;
+  vertical-align:middle;
+}
+
+
+```
+8. display:table-cell
+```angular2html
+<div class="box eightbox">
+  <div class="child" id ="eight"></div>
+</div>
+.eightbox{
+  display: table-cell;
+    vertical-align: middle;
+}
+#eight{
+  width:150px;
+  height:100px;
+  
+}
+
+```
+9.display:flex;align-items: center;
+```angular2html
+<div class="box ninebox">
+  <div class="child" id ="nine"></div>
+</div>
+.ninebox{
+  display:flex;
+  align-items: center;
+}
+#nine{
+   width:150px;
+  height:100px;
+}
+```
+10.display：flex，改变主轴方向，    flex-direction: column; 在居中
+justify-content: center;
+````
+<div class="box tenbox">
+  <div class="child" id ="ten"></div>
+</div>
+
+.tenbox{
+  display:flex;
+      flex-direction: column;
+    justify-content: center;
+}
+#ten{
+   width:150px;
+  height:100px;
+}
+````
 ### 7.[BFC详解](https://www.jianshu.com/p/fc1d61dace7b)  
