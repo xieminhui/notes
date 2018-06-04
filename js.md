@@ -47,7 +47,7 @@ function sortList(a, b) {
 drawerList.sort(sortList)
 console.log(drawerList)
 ```
-### 5.正则表达式的先行断言和后行断言：  
+### 5.正则表达式：  
 #### 正则表达式的先行断言和后行断言有四种：  
 ```
 (?=pattern)零宽正向先行断言
@@ -71,3 +71,14 @@ console.log(drawerList)
 - `(?<!pattern)`负向后行断言  
 匹配字符串某个位置，紧跟前面的字符串不能匹配pattern  
 `a stupid student study estuarine oceanography`匹配单词开头的`stu`，可以写成`(?<!\w)stu`.
+#### 正则表达式的非捕获性分组(?:)
+`?:`会作为匹配校验，并出现在匹配结果字符里面，它跟(...)不同的地方在于，
+不作为子匹配返回。
+JavaScript权威指南写到，`(?...)`只组合，把项组合到一个单元，但不记忆与改组相
+匹配的字符。
+```angular2html
+var data = 'windows 98 is ok';
+data.match(/windows (?=\d+)/);  // ["windows "]
+data.match(/windows (?:\d+)/);  // ["windows 98"]，没有放回与98相符合的字符串，但是他又匹配了98
+data.match(/windows (\d+)/);    // ["windows 98", "98"]
+```
