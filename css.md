@@ -21,8 +21,8 @@
 2.2 clientTop同理。  
 2.3 clientWidth: div.content + div.padding = 200 +10 +10 = 220.  
 2.4 clientHeight同理。  
-![](div.png)  
-![](parent.png)
+![](image/div.png)  
+![](image/parent.png)
 ---
 ```
 <div id="divParent"  style="padding: 8px; background-color: #aaa; height:200px; width:300px; overflow:auto;position:reative" >  
