@@ -22,3 +22,27 @@ app.use('/', router );
 
 
 ```
+2. ### nodejs中间件
+为什么要写这个呢？因为面试经常被人问中间件是什么？自己像是知道答案，但是又
+不敢确定。中间件都听过了，express路由，cookie-parser，是不是觉得很吊。
+这些是复杂的中间件，中间件就是一系列函数而已。你拦截到一个请求，相应之前进行
+处理的一些操作，比如数据查表，存表这些。
+```
+var express = require('express');
+
+var app = express();
+//配置处理登陆的控制器
+app.post('/loginData', function(req, res) {
+//这里就是个中间件了
+    console.log("接受到login页面的登陆信息");
+    //调用login控制器传入req,res
+    UserCtrl.login(req, res);
+    next();//调用下一个中间件
+}，function(){
+    
+});
+app.listen(3000, function () {
+    console.log('listen 3000...');
+});
+```
+
