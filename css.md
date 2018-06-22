@@ -222,3 +222,11 @@ justify-content: center;
 padding 和border,盒子大小都不会变的。
 2. w3c标准盒模型：width和height只是设置了content的宽高，盒子高度可由padding
 + border大小改变。
+
+### 9. link跟@import的区别
+(1) 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS; 
+(2)页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载; 
+（3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link
+是XHTML标签，无兼容问题。
+
+http://www.daqianduan.com/2417.html
