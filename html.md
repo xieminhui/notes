@@ -4,3 +4,4 @@
 
 ### 2.怎么区分html跟html5
 Open Internet Explorer, then if the page doesn’t work, it’s using HTML5.
+### 3. [常用的dom操作API](https://blog.csdn.net/hj7jay/article/details/53389522)
