@@ -230,3 +230,5 @@ padding 和border,盒子大小都不会变的。
 是XHTML标签，无兼容问题。
 
 http://www.daqianduan.com/2417.html
+
+### 10. [重绘跟回流](http://www.css88.com/archives/4996)
