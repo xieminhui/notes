@@ -232,3 +232,8 @@ padding 和border,盒子大小都不会变的。
 http://www.daqianduan.com/2417.html
 
 ### 10. [重绘跟回流](http://www.css88.com/archives/4996)
+这里有个有趣的东西，就是`DocumentFragment`,用于优化dom操作，
+比如我们渲染列表的时候，经常用一个字符串先组装dom，然后在`appendChild`
+到dom中，`DocumentFragment`也可以解决这个，减少dom的回流重绘。
+
+https://juejin.im/post/590f4eadac502e006cf718c3
