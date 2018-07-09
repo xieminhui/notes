@@ -4,3 +4,7 @@
 
 ### 2.怎么区分html跟html5
 Open Internet Explorer, then if the page doesn’t work, it’s using HTML5.
+### 3. [常用的dom操作API](https://blog.csdn.net/hj7jay/article/details/53389522)
+### 4.meta属性详解
+https://segmentfault.com/a/1190000004279791#articleHeader2
+https://www.cnblogs.com/2050/p/3877280.html
