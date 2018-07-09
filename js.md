@@ -82,3 +82,5 @@ data.match(/windows (?=\d+)/);  // ["windows "]
 data.match(/windows (?:\d+)/);  // ["windows 98"]，没有放回与98相符合的字符串，但是他又匹配了98
 data.match(/windows (\d+)/);    // ["windows 98", "98"]
 ```
+
+### 6.[js隐式类型转换](https://github.com/jawil/blog/issues/5)
