@@ -237,3 +237,15 @@ http://www.daqianduan.com/2417.html
 到dom中，`DocumentFragment`也可以解决这个，减少dom的回流重绘。
 
 https://juejin.im/post/590f4eadac502e006cf718c3
+
+### 11 css3动画
+https://codepen.io/xiexielala/pen/ajoeVz?editors=1111
+1. transition:过渡效果，有一下的属性：
++ transition-property：过渡属性，不指定的属性仍然是瞬间变化
++ transition-duration：过渡时长，比如width 1s变化。
++ transition-timing-function：过渡效果，默认是ease逐渐变慢，linear：匀速，ease-in：加速
+ease-out：减速cubic-bezier函数：自定义速度模式（http://cubic-bezier.com/#.86,.17,.08,.82）
++ transition-delay:延时， transition: 1s height, 1s 2s width;表示2s后width
+才开始变化，用于组合多种变化效果
+ 
+2.                                             
