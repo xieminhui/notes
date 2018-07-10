@@ -247,5 +247,11 @@ https://codepen.io/xiexielala/pen/ajoeVz?editors=1111
 ease-out：减速cubic-bezier函数：自定义速度模式（http://cubic-bezier.com/#.86,.17,.08,.82）
 + transition-delay:延时， transition: 1s height, 1s 2s width;表示2s后width
 才开始变化，用于组合多种变化效果
- 
+> 优缺点：
+ + 优点就是很简单
+ + transition需要事件触发，所以没法在网页加载时自动发生。
+ + transition是一次性的，不能重复发生，除非一再触发。
+ + transition只能定义开始状态和结束状态，不能定义中间状态，也就是说只有两个状态。
+ + transition需要明确知道，开始状态和结束状态的具体数值，才能计算出中间状态。比如，height从0px变化到100px，transition可以算出中间状态。但是，transition没法算出0px到auto的中间状态，也就是说，如果开始或结束的设置是height: auto，那么就不会产生动画效果。类似的情况还有，
+ display: none到block，background: url(foo.jpg)到url(bar.jpg)等等。
 2.                                             
