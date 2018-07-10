@@ -254,4 +254,19 @@ ease-out：减速cubic-bezier函数：自定义速度模式（http://cubic-bezie
  + transition只能定义开始状态和结束状态，不能定义中间状态，也就是说只有两个状态。
  + transition需要明确知道，开始状态和结束状态的具体数值，才能计算出中间状态。比如，height从0px变化到100px，transition可以算出中间状态。但是，transition没法算出0px到auto的中间状态，也就是说，如果开始或结束的设置是height: auto，那么就不会产生动画效果。类似的情况还有，
  display: none到block，background: url(foo.jpg)到url(bar.jpg)等等。
-2.                                             
+
+2.Animation
+https://codepen.io/xiexielala/pen/gjOPOL
++ animation-name: 动画名字，用`@keyframes`定义
++ animation-duration：动画时间，秒或毫秒
++ animation-timing-function：规定动画的速度曲线，ease-in-out	动画以低速开始和结束，跟
+transition一样
++ animation-delay：延时执行，秒或毫秒
++ animation-iteration-count：动画执行次数，使用数字或者infinite表示无限次
++ animation-direction：定义是否应该轮流反向播放动画，normal默认值，表示正常播放，
+alternate表示轮流反向播放。
++ animation-play-state：规定动画正在运行running还是暂停paused
++  animation-fill-mode：动画在播放之前或之后，其动画效果是否可见，forwards：显示最后一个属性
+backwards：在 animation-delay 所指定的一段时间内，在动画显示之前，
+应用开始属性值（在第一个关键帧中定义），both都是
+                                            
