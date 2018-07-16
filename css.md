@@ -295,11 +295,11 @@ backwards：在 animation-delay 所指定的一段时间内，在动画显示之
 ###计算实例
 ```
 a{color: yellow;} /*特殊性值：0,0,0,1*/
-div a{color: green;} /*特殊性值：0,0,0,2*/
+div a{color: green;} /*特殊性值：0,0,0,2 相同等级的叠加计算了*/
 .demo a{color: black;} /*特殊性值：0,0,1,1*/
 .demo input[type="text"]{color: blue;} /*特殊性值：0,0,2,1*/
 .demo *[type="text"]{color: grey;} /*特殊性值：0,0,2,0*/
 #demo a{color: orange;} /*特殊性值：0,1,0,1*/
-div#demo a{color: red;} /*特殊性值：0,1,0,2*/
+div#demo a{color: red;} /*特殊性值：0,1,0,2 不同等级的是不影响的*/
 
 ```
