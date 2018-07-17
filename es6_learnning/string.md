@@ -113,3 +113,17 @@ str;
 ### matchAll()
 
 ## 模板字符串
+用反引号（\` ）标识,变量写在`${}`中
+
+```
+let girl = 'lala';
+let html = '<span>hello ' + girl + '</span>';
+
+let html1 = `<span>hello ${girl}</span>`;
+
+html
+"<span>hello lala</span>"
+html1
+"<span>hello lala</span>"
+
+```
