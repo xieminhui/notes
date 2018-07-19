@@ -176,3 +176,36 @@ tmpl(citys);
           	
       </table>"
 ```
+## 标签模板
+模板字符用于函数的参数，该函数将被调用来处理这个模板字符串，成为’标签模板‘。函数的一种
+特殊调用形式，如果模板字符串里面有变量，会将模板字符串先处理成多个参数，在调用函数
+```
+let a = 5;
+let b = 10;
+
+tag`Hello ${ a + b } world ${ a * b }`;
+// 等同于
+tag(['Hello ', ' world ', ''], 15, 50);
+
+
+var a = 5;
+var b = 10;
+
+function tag(s, v1, v2) {
+  console.log(s[0]);
+  console.log(s[1]);
+  console.log(s[2]);
+  console.log(v1);
+  console.log(v2);
+
+  return "OK";
+}
+
+tag`Hello ${ a + b } world ${ a * b}`;
+// "Hello "
+// " world "
+// ""
+// 15
+// 50
+// "OK"
+```
