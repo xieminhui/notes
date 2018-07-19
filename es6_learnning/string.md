@@ -127,3 +127,52 @@ html1
 "<span>hello lala</span>"
 
 ```
+模板字符串之中也可以调用函数
+```
+function sayHello(){
+    return 'Hello';
+}
+`${sayHello()} lala!`
+//"Hello lala!"
+```
+模板字符串的嵌套
+```
+var tmpl = city => {
+    return `
+    <table>
+    ${city.map(value =>{
+        return `
+            <tr>
+                <td>${value.pro}</td>
+                <td>${value.cityname}</td>
+            </tr>
+        `
+    }).join('')}	
+    </table>`
+};
+var citys = [
+    {
+        pro: '广东省',
+        cityname: '广州'
+    },
+    {
+        pro: '湖北省',
+        cityname: '武汉'
+    }
+];
+tmpl(citys);
+//"
+      <table>
+      
+              <tr>
+                  <td>广东省</td>
+                  <td>广州</td>
+              </tr>
+          
+              <tr>
+                  <td>湖北省</td>
+                  <td>武汉</td>
+              </tr>
+          	
+      </table>"
+```
