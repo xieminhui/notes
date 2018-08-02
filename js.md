@@ -84,3 +84,5 @@ data.match(/windows (\d+)/);    // ["windows 98", "98"]
 ```
 
 ### 6.[js隐式类型转换](https://github.com/jawil/blog/issues/5)
+
+### 7.[有点意思的js继承](https://www.cnblogs.com/Watcher/p/3925036.html)
