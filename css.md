@@ -303,7 +303,7 @@ div a{color: green;} /*特殊性值：0,0,0,2 相同等级的叠加计算了*/
 div#demo a{color: red;} /*特殊性值：0,1,0,2 不同等级的是不影响的*/
 
 ```
-### 14.background-size
+### 14. background-size
 ```
 background-size : 100% 100%;
 background-size : cover;
