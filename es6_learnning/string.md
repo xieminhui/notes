@@ -209,3 +209,9 @@ tag`Hello ${ a + b } world ${ a * b}`;
 // 50
 // "OK"
 ```
+
+### [Unicode与JavaScript详解](http://www.ruanyifeng.com/blog/2014/12/unicode.html)
+
+### [ASCII，Unicode 和 UTF-8](http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html)
+
+### [unicode高低位](https://segmentfault.com/a/1190000007992410)
