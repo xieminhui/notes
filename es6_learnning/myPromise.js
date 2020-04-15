@@ -77,7 +77,7 @@ class myPromise {
       // 
       setTimeout(run, 0);
     }
-
+    
     // 
   }
 
@@ -96,7 +96,61 @@ class myPromise {
     setTimeout(run, 0);
   }
 
-  then () {
+  then (onFulfilled, onRejected) {
+    const { _value, _status } = this;
 
+    // 返回一个新的promise对象
+    return new myPromise((onFulfilledNext, onRejectedNext) => {
+      //
+      let fulfilled = value => {
+        try {
+          if (!isFunction(onFulfilled)) {
+            onFulfilledNext(value);
+          } else {
+            let res = onFulfilled(value);
+            if(res  instanceof myPromise) {
+              // 
+              res.then(onFulfilledNext, onRejectedNext);
+            } else {
+              onFulfilledNext(res)
+            }
+          }
+        } catch (error) {
+          onRejectedNext(err);
+        }
+      }
+
+      let rejected = error => {
+        try {
+          if(!isFuntion(onRejected)) {
+            onRejectedNext(error);
+          } else {
+            let res = onRejected(error);
+            if(res instanceof myPromise) {
+              res.then(onFulfilledNext, onRejectedNext);
+            } else {
+              onFulfilledNext(res)
+            }
+          }
+        } catch (error) {
+          onRejectedNext(err)
+        }
+      }
+
+      switch (_status) {
+        case PENDING:
+          this._fullfilledQueues.push(fulfilled);
+          this._rejectedQueues.push(rejected)
+          break;
+        case FULFILLED: 
+          fulfilled(_value);
+          break
+        case REJECTED:
+          rejected(_value);
+          break; 
+        default:
+          break;
+      }
+    })
   }
 }
