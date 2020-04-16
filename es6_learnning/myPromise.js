@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-15 15:04:41
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-16 10:59:08
+ * @LastEditTime: 2020-04-16 11:32:05
  * @description:
  */
 
@@ -153,6 +153,12 @@ class myPromise {
       }
     })
   }
+
+  catch (onRejected) {
+    return this.then(undefined, onRejected)
+  }
+
+
 }
 
 debugger;
@@ -163,22 +169,28 @@ var p1 = new myPromise((resolve, reject) => {
 })
 
 var p2 = p1.then(res => {
-  console.log(res)
-  return 2;
-})
-
-// p2.then(res => {
-//   console.log(res);
-// })
-
-p2.then(res => {
-  new myPromise((resolve, reject) => {
+  console.log(res);
+  return new myPromise((resolve, reject) => {
 
     setTimeout(() => {
       resolve(2);
-    }, 1000);
+    }, 0);
   })
+  // return 2;
+})
 
-}).then(res => {
+p2.then(res => {
   console.log(res);
 })
+
+// p2.then(res => {
+//   new myPromise((resolve, reject) => {
+
+//     setTimeout(() => {
+//       resolve(3);
+//     }, 1000);
+//   })
+
+// }).then(res => {
+//   console.log(res);
+// })
