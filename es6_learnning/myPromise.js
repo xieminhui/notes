@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-15 15:04:41
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-16 11:41:01
+ * @LastEditTime: 2020-04-16 17:06:19
  * @description:
  */
 
@@ -163,6 +163,50 @@ class myPromise {
     return this.then(undefined, onRejected)
   }
 
+  static resolve (value) {
+    if (value instanceof myPromise) return;
+    return new myPromise(resolve => resolve(value));
+  }
+
+  static reject (value) {
+    return new myPromise(reject => reject(value));
+  }
+
+  static all (list) {
+    return new myPromise((resolve, reject) => {
+      let values = [];
+      let connt = 0;
+      for (let [i, p] of list.entries()) {
+        this.resolve(p).then(res => {
+          values[i] = res;
+          count++;
+          // 等到所有的promise都fulfilled之后就可以resolve
+          if (count === list.length) resolve(values);
+        }, err => {
+          reject(err);
+        })
+      }
+    })
+  }
+
+  static race (list) {
+    return new myPromise((resolve, reject) => {
+      for (let [i, p] of list.entries()) {
+        this.resolve(p).then(res => {
+          resolve(res);
+        }, err => {
+          reject(err);
+        })
+      }
+    })
+  }
+
+  finally (cb) {
+    return this.then(
+      value => myPromise.resolve(cb()).then(() => value),
+      error => myPromise.resolve(error).then(() => { throw error; })
+    )
+  }
 
 }
 
