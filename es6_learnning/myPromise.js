@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-15 15:04:41
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-16 11:32:05
+ * @LastEditTime: 2020-04-16 11:41:01
  * @description:
  */
 
@@ -101,7 +101,12 @@ class myPromise {
 
     // 返回一个新的promise对象
     return new myPromise((onFulfilledNext, onRejectedNext) => {
-      //
+      // 返回一个新的promise
+      // p2 = p1.then(...), p2.then(...)
+      // -----resolve其实就是清空then加入的回调-----
+      //p1的then回调是在，p1的resolve的时候，触发的，同理p2 then里面的执行，那就是再
+      // p1 执行resolve，触发then 回调的时候，再去触发这个onFulfilledNext，这个其实就是
+      // 触发了p2的resolve，接着执行清空回调函数栈的操作
       let fulfilled = value => {
         try {
           if (!isFunction(onFulfilled)) {
@@ -109,7 +114,7 @@ class myPromise {
           } else {
             let res = onFulfilled(value);
             if (res instanceof myPromise) {
-              // 
+              // 如果是返回一个promis对象，则必须等待其状态改变后才能执行下一个then的回调
               res.then(onFulfilledNext, onRejectedNext);
             } else {
               onFulfilledNext(res)
