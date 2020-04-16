@@ -1,11 +1,11 @@
 /*
  * @Date: 2020-04-15 15:04:41
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-15 17:45:07
+ * @LastEditTime: 2020-04-16 10:59:08
  * @description:
  */
 
-const isFuntion = variable => typeof variable === 'function'
+const isFunction = variable => typeof variable === 'function'
 
 const PENDING = 'PENDING'
 const FULFILLED = 'FULFILLED'
@@ -14,7 +14,7 @@ const REJECTED = 'REJECTED'
 class myPromise {
 
   constructor(handle) {
-    if (!isFuntion(handle)) {
+    if (!isFunction(handle)) {
       throw new Error('handle is not a function')
     }
     // 添加状态
@@ -75,9 +75,9 @@ class myPromise {
       }
 
       // 
-      setTimeout(run, 0);
     }
-    
+    setTimeout(run, 0);
+
     // 
   }
 
@@ -108,7 +108,7 @@ class myPromise {
             onFulfilledNext(value);
           } else {
             let res = onFulfilled(value);
-            if(res  instanceof myPromise) {
+            if (res instanceof myPromise) {
               // 
               res.then(onFulfilledNext, onRejectedNext);
             } else {
@@ -116,24 +116,24 @@ class myPromise {
             }
           }
         } catch (error) {
-          onRejectedNext(err);
+          onRejectedNext(error);
         }
       }
 
       let rejected = error => {
         try {
-          if(!isFuntion(onRejected)) {
+          if (!isFunction(onRejected)) {
             onRejectedNext(error);
           } else {
             let res = onRejected(error);
-            if(res instanceof myPromise) {
+            if (res instanceof myPromise) {
               res.then(onFulfilledNext, onRejectedNext);
             } else {
               onFulfilledNext(res)
             }
           }
         } catch (error) {
-          onRejectedNext(err)
+          onRejectedNext(error)
         }
       }
 
@@ -142,15 +142,43 @@ class myPromise {
           this._fullfilledQueues.push(fulfilled);
           this._rejectedQueues.push(rejected)
           break;
-        case FULFILLED: 
+        case FULFILLED:
           fulfilled(_value);
           break
         case REJECTED:
           rejected(_value);
-          break; 
+          break;
         default:
           break;
       }
     })
   }
 }
+
+debugger;
+var p1 = new myPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(1);
+  }, 2000);
+})
+
+var p2 = p1.then(res => {
+  console.log(res)
+  return 2;
+})
+
+// p2.then(res => {
+//   console.log(res);
+// })
+
+p2.then(res => {
+  new myPromise((resolve, reject) => {
+
+    setTimeout(() => {
+      resolve(2);
+    }, 1000);
+  })
+
+}).then(res => {
+  console.log(res);
+})
