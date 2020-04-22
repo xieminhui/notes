@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-22 16:29:53
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-22 17:39:05
+ * @LastEditTime: 2020-04-22 17:48:58
  * @description:
  */
 
@@ -13,12 +13,22 @@
 // 确定选择： 插入还是删除还是替换最快
 // 确定dp：dp用函数，dp(i, j)表示s1[0..i] 和 s2[0..j] 的最小编辑距离
 // 状态转移：不同的选择操作会对下标i，j产生不同的影响
-// dp(i-1, j) 表示删除操作
-// dp(i, j-1) 表示插入
-// dp(i-1, j-1)表示替换
+//// dp(i-1, j) 表示删除操作
+//// dp(i, j-1) 表示插入
+//// dp(i-1, j-1)表示替换
+////            { j , i = 0; 
+//// dp(i, j) = { i , j = 0;
+////            { min{ dp(i-1, j) + 1, dp(i, j-1) + 1, dp(i-1, j-1) + f(i, j) }, i>0,j>0;这里当字符串1的第i个字符不等于字符串2的第j个字符时，f(i, j) = 1；否则，f(i, j) = 0。
+
 // base case: i,j下标移动到 < 0, dp(0, [...])表示
 
 
+/**
+ * @description: 返回最小编辑距离
+ * @param {Number} s1的长度
+ * @param {Number} s2的长度
+ * @return {Number} : 返回s1,s2最小编辑距离
+ */
 function minDistance (s1, s2) {
 
   function dp (i, j) {
