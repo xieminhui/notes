@@ -1,14 +1,17 @@
 /*
  * @Date: 2020-04-21 11:47:49
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-21 15:39:59
+ * @LastEditTime: 2020-04-22 10:30:41
  * @description: 
  */
 
 
 // 最长递增子序列
-//  dp[i]表示以nums[i]结尾的最长递增子序列
-
+// 确定状态：数组下标i的值是否比i-1的值大
+// 确定选择：数组下标i比i-1的值大， 最长递增子序列长度加1，否则就是它自身，及长度1
+// 确定dp数组：一个状态，dp数组就是一维数组
+// dp[i]表示以nums[i]结尾的最长递增子序列
+// base case: 数组下标i遍历到最后了
 function lengthOfLIS (nums) {
 
     // # dp 数组全都初始化为 1
@@ -20,6 +23,7 @@ function lengthOfLIS (nums) {
         }
     }
 
+    // 取出dp[i]中最大的值就是答案    
     let res = 0
     for (let i = 0; i < dp.length; i++) {
         res = Math.max(res, dp[i])
