@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-23 14:20:35
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-23 15:37:37
+ * @LastEditTime: 2020-04-23 17:01:15
  * @description:
  */
 
@@ -25,8 +25,8 @@ function TreeNode (val) {
 function preOrderTraverse (node) {
   if (!node) return;
   console.log(node.val);
-  preTraverse(node.left);
-  preTraverse(node.right);
+  preOrderTraverse(node.left);
+  preOrderTraverse(node.right);
 }
 
 
@@ -37,9 +37,9 @@ function preOrderTraverse (node) {
  */
 function midOrderTraverse (node) {
   if (!node) return;
-  preTraverse(node.left);
+  midOrderTraverse(node.left);
   console.log(node.val);
-  preTraverse(node.right);
+  midOrderTraverse(node.right);
 }
 
 
@@ -51,8 +51,8 @@ function midOrderTraverse (node) {
  */
 function postOrderTraverse (node) {
   if (!node) return;
-  preTraverse(node.left);
-  preTraverse(node.right);
+  postOrderTraverse(node.left);
+  postOrderTraverse(node.right);
   console.log(node.val);
 }
 
