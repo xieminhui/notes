@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-23 14:21:01
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-23 14:52:09
+ * @LastEditTime: 2020-04-23 15:13:36
  * @description:
  */
 
@@ -73,40 +73,7 @@ function middleTraverse (node, level, arr) {
 // ======================== ================================
 // 非递归解法就是用queue来存
 
-// define Queue
-function Queue () {
-  this.data = [];
-}
-
-/**
- * @description: 进入队列
- * @param {*} 
- * @return: 
- */
-Queue.prototype.enquue = function (ele) {
-  this.data.push(ele);
-}
-
-/**
- * @description: 出队列 
- * @return: 
- */
-Queue.prototype.dequeue = function () {
-  return this.data.shift();
-}
-
-/**
- * @description: 放回队列是否为空
- * @return {boolean}: 
- */
-Queue.prototype.isEmpty = function () {
-  if (this.data.length == 0) {
-    return true;
-  }
-  else {
-    return false;
-  }
-}
+const Queue = require('../Queue')
 
 var isSymmetric = function (root) {
   let q = new Queue();
