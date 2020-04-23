@@ -1,10 +1,11 @@
 /*
  * @Date: 2020-04-23 14:20:35
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-23 15:06:25
+ * @LastEditTime: 2020-04-23 15:37:37
  * @description:
  */
 
+const { Queue } = require('../Queue')
 
 // 二叉树及遍历
 
@@ -53,4 +54,23 @@ function postOrderTraverse (node) {
   preTraverse(node.left);
   preTraverse(node.right);
   console.log(node.val);
+}
+
+
+/**
+ * @description: 层次遍历
+ * @param {TreeNode}
+ * @return:
+ */
+
+function levelOrderTraverse (node) {
+  let arr = [];
+  let q = new Queue();
+  q.enquue(root)
+  while (!q.isEmpty()) {
+    let node = q.enqueue();
+    arr.push(node.val);
+    if (node.left) q.enquue(node.left);
+    if (node.right) q.enquue(node.right);
+  }
 }

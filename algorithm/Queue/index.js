@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-23 15:12:14
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-23 15:12:56
+ * @LastEditTime: 2020-04-23 15:53:37
  * @description:
  */
 
@@ -15,7 +15,7 @@ function Queue () {
  * @param {*} 
  * @return: 
  */
-Queue.prototype.enquue = function (ele) {
+Queue.prototype.enqueue = function (ele) {
   this.data.push(ele);
 }
 
@@ -40,4 +40,4 @@ Queue.prototype.isEmpty = function () {
   }
 }
 
-module.exports.Queue
+module.exports.Queue = Queue
