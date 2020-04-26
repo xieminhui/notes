@@ -1,10 +1,11 @@
 /*
  * @Date: 2020-04-26 14:39:01
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-26 15:09:33
+ * @LastEditTime: 2020-04-26 15:50:14
  * @description:
  */
 
+// 根据先序遍历和中序遍历生成一颗二叉树
 
 
 // Definition for a binary tree node.
@@ -19,7 +20,7 @@ function TreeNode (val) {
  * @return {TreeNode}
  */
 
-var buildTree = function (preorder, inorder) {
+var buildTreeByPreorder = function (preorder, inorder) {
   if (!inorder.length) return null
   let tmp = preorder[0], mid = inorder.indexOf(tmp)
   let root = new TreeNode(tmp)
@@ -29,5 +30,5 @@ var buildTree = function (preorder, inorder) {
 };
 
 
-let tree = buildTree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])
+let tree = buildTreeByPreorder([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])
 console.log(tree)
