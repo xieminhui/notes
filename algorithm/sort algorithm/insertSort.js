@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-24 17:32:12
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-24 17:32:22
+ * @LastEditTime: 2020-04-26 10:53:03
  * @description:
  */
 
@@ -31,3 +31,5 @@ function insertSort (arr) {
   }
   return arr;
 }
+
+module.exports.insertSort = insertSort;

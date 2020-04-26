@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-24 11:47:23
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-24 17:32:37
+ * @LastEditTime: 2020-04-26 10:52:56
  * @description:
  */
 
@@ -28,3 +28,5 @@ function bubbleSort (arr) {
   }
   return arr;
 }
+
+module.exports.bubbleSort = bubbleSort;
