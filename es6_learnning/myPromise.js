@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-15 15:04:41
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-16 17:06:19
+ * @LastEditTime: 2020-05-11 17:27:00
  * @description:
  */
 
@@ -169,7 +169,7 @@ class myPromise {
   }
 
   static reject (value) {
-    return new myPromise(reject => reject(value));
+    return new myPromise((resolve, reject) => reject(value));
   }
 
   static all (list) {
@@ -211,26 +211,28 @@ class myPromise {
 }
 
 debugger;
-var p1 = new myPromise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(1);
-  }, 2000);
-})
+let a = myPromise.resolve(1);
+console.log(a);
+// var p1 = new myPromise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve(1);
+//   }, 2000);
+// })
 
-var p2 = p1.then(res => {
-  console.log(res);
-  return new myPromise((resolve, reject) => {
+// var p2 = p1.then(res => {
+//   console.log(res);
+//   return new myPromise((resolve, reject) => {
 
-    setTimeout(() => {
-      resolve(2);
-    }, 0);
-  })
-  // return 2;
-})
+//     setTimeout(() => {
+//       resolve(2);
+//     }, 0);
+//   })
+//   // return 2;
+// })
 
-p2.then(res => {
-  console.log(res);
-})
+// p2.then(res => {
+//   console.log(res);
+// })
 
 // p2.then(res => {
 //   new myPromise((resolve, reject) => {
