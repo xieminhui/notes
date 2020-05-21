@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-05-21 11:24:04
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-05-21 16:02:07
+ * @LastEditTime: 2020-05-21 16:25:10
  * @description:
  */
 
@@ -45,6 +45,7 @@ function findMiniStr (str, target) {
       // 判断两个map中的改字符是否已经相等了
       if (Tmap.get(key) == winMap.get(key)) {
         match += Tmap.get(key);
+        match = match > target.length ? target.length : match;
       }
     }
     right++;
