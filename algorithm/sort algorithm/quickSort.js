@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-24 17:32:29
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-26 10:53:26
+ * @LastEditTime: 2020-05-28 10:12:13
  * @description:
  */
 
@@ -67,8 +67,8 @@ function quickSort2 (arr, low, high) {
   }
   return arr;
 }
-var arr = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48];
-console.log(quickSort2(arr, 0, arr.length - 1));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+var arr = [1, 9, 10, 3, 8, 7, 6, 2, 4];
+console.log(quickSort2(arr, 0, arr.length - 1));
 
 
 module.exports.quickSort = quickSort;
