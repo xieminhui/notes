@@ -1,11 +1,13 @@
 
 
 Function.prototype.myApply = function (context) {
-    let fn = this;
+    var context = context || window;
+    var fn = this;
     context.fn = fn;
-    let args = [...arguments].slice(1);
-    return context.fn(...args);
+    var args = [...arguments].slice(1);
+    var result = context.fn(...args);
     delete context.fn;
+    return result;
 }
 
 const obj1 = {
@@ -15,5 +17,5 @@ const obj1 = {
     "length": 3
   };
  
-let res = Array.prototype.slice.myApply(obj1, 0);
+let res = Array.prototype.slice.myApply(obj1, [0]);
 console.log(res); 
