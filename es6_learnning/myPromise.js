@@ -66,7 +66,7 @@ class myPromise {
         }, err => {
           this._value = err;
           this._status = REJECTED;
-          runRejected(err);
+          runFulfilled(err);
         })
       } else {
         this._value = val;
@@ -211,13 +211,7 @@ class myPromise {
 }
 
 debugger;
-let a = myPromise.resolve((resolve)=>{
-  setTimeout(resolve, 10)
-  console.log(1)}
-);
-a.then(() => {
-  console.log(2)
-})
+let a = myPromise.resolve(1);
 console.log(a);
 // var p1 = new myPromise((resolve, reject) => {
 //   setTimeout(() => {
