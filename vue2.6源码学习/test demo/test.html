@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #app {
+      margin: 100px auto;
+      width: 600px;
+      height: 600px;
+    }
+
+    .p1 {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <p id="msg">{{ msg }}</p>
+    <p :class="{p1: usep1}">{{msg}}</p>
+    <p v-if="show">{{msg}}</p>
+    <p v-if="!show">{{msg}}</p>
+    <ul>
+      <li v-for="(item, index) in ul" :key="item.key">{{item.txt}}#{{item.key}}</li>
+    </ul>
+    <button @click="changeTxt">改变文字</button>
+    <button @click="changeTxt1">改变ul </button>
+    <button @click="changeTxt2">insert li </button>
+    <button @click="changeClass">change class</button>
+    <!-- <button-counter></button-counter> -->
+  </div>
+  <script src="../dist/vue.js"></script>
+  <script>
+    // 定义一个名为 button-counter 的新组件
+    Vue.component('button-counter', {
+      data: function () {
+        return {
+          count: 0
+        }
+      },
+      template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
+    function test7() {
+      var msg = document.getElementById('msg')
+      msg.style.height = '100px'
+      msg.textContent = 1
+      show()
+    }
+    function show() {
+      console.log(msg.textContent, msg.style.height)
+    }
+    var app = new Vue({
+      el: '#app',
+      watch: {
+        msg: function (val, oldVal) {
+          console.log('new: %s, old: %s', val, oldVal)
+        },
+      },
+      data: {
+        msg: 'Hello Vue!',
+        show: true,
+        ul: [
+          {
+            txt: 'Hello li',
+            key: 1
+          },
+          {
+            txt: 'Hello li',
+            key: 2
+          },
+          {
+            txt: 'Hello li',
+            key: 3
+          }
+        ],
+        usep1: false
+      },
+      methods: {
+        changeTxt() {
+          this.msg = 1
+          this.$nextTick(() => {
+            this.msg = 2
+            console.log(this.msg)
+          })
+        },
+        changeTxt1() {
+          this.ul.push('Hello li')
+        },
+        changeTxt2() {
+          let obj = {
+            txt: 'Hello li',
+            key: 4
+          }, obj1 = {
+            txt: 'Hello li',
+            key: 5
+          };
+          this.ul.splice(1, 0, obj);
+          this.ul.push(obj1)
+        },
+        changeClass() {
+          this.usep1 = true;
+        }
+      }
+    })
+  </script>
+  <!-- <script>
+    console.log('1');
+    setTimeout(function () {
+      console.log('2');
+      Promise.resolve().then(function () {
+        console.log('6');
+      }).then(function () {
+        console.log('7');
+      });
+      setTimeout(function () {
+        console.log('8')
+      }, 0)
+    }, 0);
+
+    Promise.resolve().then(function () {
+      console.log('3');
+    }).then(function () {
+      console.log('4');
+      setTimeout(function () {
+        console.log('9')
+      }, 0);
+    });
+    console.log('5');
+
+    function foo() {
+      bar();
+    }
+
+    function bar() {
+      
+      console.log('bar');
+    }
+    foo();
+  </script> -->
+</body>
+
+</html>

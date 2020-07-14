@@ -147,7 +147,7 @@ return mountComponent(this, el, hydrating)
   }, true /* isRenderWatcher */)
   hydrating = false
 ```
-11、new Watcher详细先不讲，这里先看下生成vnode做了什么，`vm._update(vm._render(), hydrating)`，代码在`src/core/instance/render.js`
+11、new Watcher详细先不讲，这里先看下生成vnode做了什么，`vm._update(vm._render(), hydrating)`，代码在`src/core/instance/render.js`，先执行`vm._render()`
 ```
 
 //=====================render start
@@ -160,4 +160,6 @@ with(this){return _c('div',{attrs:{"id":"app"}},[_c('p',{attrs:{"id":"msg"}},[_v
  vnode = render.call(vm._renderProxy, vm.$createElement);
 
 ```
-12、完成。
+生成vnode后，执行`vm._update()`，如果是第一次渲染，直接生成真实dom，否则这里是vue patch后得出更新的virtual dom，更新dom。
+
+12、如果有子组件，循环上面的步骤，完成。
