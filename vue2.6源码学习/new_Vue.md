@@ -55,7 +55,7 @@ renderMixin(Vue)
 ```
   3、下一步依然实在init.js里面
 ```
-// 开始生成vnode
+// 开始生成渲染
 if (vm.$options.el) {
       vm.$mount(vm.$options.el)
     }
