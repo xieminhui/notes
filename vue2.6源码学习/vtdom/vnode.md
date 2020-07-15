@@ -203,3 +203,5 @@ class VNode {
 输出下vnode的结构
 
 ![vnode.png](./vnode.png)
+
+下一步就是生成真实的dom，这个会在patch.md里面讲解。
