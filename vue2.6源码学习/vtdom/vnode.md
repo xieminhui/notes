@@ -201,4 +201,5 @@ class VNode {
 }
 ```
 输出下vnode的结构
+
 ![vnode.png](./vnode.png)
