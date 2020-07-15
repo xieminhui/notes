@@ -208,3 +208,8 @@ function invokeCreateHooks (vnode, insertedVnodeQueue) {
 cbs里面完成style,class,event等更新绑定
 
 ![vnode.png](./cbs.png)
+
+
+# diff算法
+不是第一次生成doms时，如果dom改变了，则会进行dom的diff。算法过程如下：
+ 
