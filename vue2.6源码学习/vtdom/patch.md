@@ -211,5 +211,118 @@ cbs里面完成style,class,event等更新绑定
 
 
 # diff算法
+```
+while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+  if (isUndef(oldStartVnode)) {
+    oldStartVnode = oldCh[++oldStartIdx] // Vnode has been moved left
+  } else if (isUndef(oldEndVnode)) {
+    oldEndVnode = oldCh[--oldEndIdx]
+  } else if (sameVnode(oldStartVnode, newStartVnode)) {
+    patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
+    oldStartVnode = oldCh[++oldStartIdx]
+    newStartVnode = newCh[++newStartIdx]
+  } else if (sameVnode(oldEndVnode, newEndVnode)) {
+    patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx)
+    oldEndVnode = oldCh[--oldEndIdx]
+    newEndVnode = newCh[--newEndIdx]
+  } else if (sameVnode(oldStartVnode, newEndVnode)) { // Vnode moved right
+    patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx)
+    canMove && nodeOps.insertBefore(parentElm, oldStartVnode.elm, nodeOps.nextSibling(oldEndVnode.elm))
+    oldStartVnode = oldCh[++oldStartIdx]
+    newEndVnode = newCh[--newEndIdx]
+  } else if (sameVnode(oldEndVnode, newStartVnode)) { // Vnode moved left
+    patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
+    canMove && nodeOps.insertBefore(parentElm, oldEndVnode.elm, oldStartVnode.elm)
+    oldEndVnode = oldCh[--oldEndIdx]
+    newStartVnode = newCh[++newStartIdx]
+  } else {
+    if (isUndef(oldKeyToIdx)) oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx)
+    idxInOld = isDef(newStartVnode.key)
+      ? oldKeyToIdx[newStartVnode.key]
+      : findIdxInOld(newStartVnode, oldCh, oldStartIdx, oldEndIdx)
+    if (isUndef(idxInOld)) { // New element
+      createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm, false, newCh, newStartIdx)
+    } else {
+      vnodeToMove = oldCh[idxInOld]
+      if (sameVnode(vnodeToMove, newStartVnode)) {
+        patchVnode(vnodeToMove, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
+        oldCh[idxInOld] = undefined
+        canMove && nodeOps.insertBefore(parentElm, vnodeToMove.elm, oldStartVnode.elm)
+      } else {
+        // same key but different element. treat as new element
+        createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm, false, newCh, newStartIdx)
+      }
+    }
+    newStartVnode = newCh[++newStartIdx]
+  }
+}
+```
+![vnode.png](./patch.png)
+
+```
+  // key映射
+  {
+    txt: 'A',
+    key: 1
+  },
+  {
+    txt: 'B',
+    key: 2
+  },
+  {
+    txt: 'C',
+    key: 3
+  }, {
+    txt: 'D',
+    key: 4
+  }, 
+  {
+    txt: 'E',
+    key: 5
+  }
+
+```
+
 不是第一次生成doms时，如果dom改变了，则会进行dom的diff。算法过程如下：
- 
++ 首位比较A,B =>不是； E,D =>不是；A，D=>不是；E,B=>不是；
++ 接着使用key查找，发现新节点里面有A,说明移动了位置，这时候
+  ```
+  if (sameVnode(vnodeToMove, newStartVnode)) {
+    patchVnode(vnodeToMove, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
+    oldCh[idxInOld] = undefined
+    // 移动B,插入到A前面
+    canMove && nodeOps.insertBefore(parentElm, vnodeToMove.elm, oldStartVnode.elm)
+  }
+  ```
+  对比两个节点patchVnode，更新数据，包括时间绑定，class更新，style...。接着旧的节点置空，变成`A,undefined,B,C,D,E`
+  ![vnode.png](./diff.png)
+
++ 进入下一轮，`oldStartidx+1`,遇到`undefined`，加1，到达c;
+  ```
+  if (isUndef(oldStartVnode)) {
+    oldStartVnode = oldCh[++oldStartIdx] // Vnode has been moved left
+  }
+  ```
+
++ c 位置不变，`patchVnode`后，`oldStartidx+1`,`newStartidx+1`；
+  ```
+  patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
+  oldStartVnode = oldCh[++oldStartIdx]
+  newStartVnode = newCh[++newStartIdx]
+  ```
+  
+  ![vnode.png](./diff2.png)
+
++ old到达D,对比E,不是，再用`newEndidx`对比，是；
+  ```
+    patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx)
+    // 移动E,插入到D前面
+    canMove && nodeOps.insertBefore(parentElm, oldStartVnode.elm, nodeOps.nextSibling(oldEndVnode.elm))
+    oldStartVnode = oldCh[++oldStartIdx]
+    newEndVnode = newCh[--newEndIdx]
+  ```
+
++ 最后一步，比较E;
+  ![vnode.png](./diff3.png)
+
++ 完成。
