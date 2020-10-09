@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-05-27 11:41:05
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-05-27 11:41:19
+ * @LastEditTime: 2020-09-22 16:57:30
  * @description:
  */
 
@@ -48,3 +48,62 @@ var setZeroes = function (matrix) {
 };
 
 setZeroes([[0, 1, 2, 0], [3, 4, 5, 2], [1, 3, 1, 5]])
+
+var moveZeroes = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i]) {
+      continue;
+    }
+    nums.splice(i, 1);
+    nums.push(0);
+    i--;
+  }
+  return nums;
+};
+// moveZeroes([0, 1, 0, 3, 12])
+
+var minCameraCover = function (root) {
+  let count = 0;
+  function dfs (node, pa) {
+    if (!node) return;
+    if (!node.ca && !pa) {
+      node.ca = true;
+      count++;
+    }
+    dfs(node.left, node.ca);
+    dfs(node.right, node.ca);
+  }
+  if (!root.left && !root.right) {
+    return 1;
+  } else if (!root.left) {
+    dfs(root.right);
+  } else if (!root.right) {
+    dfs(root.left);
+
+  } else {
+    dfs(root)
+  }
+  return count;
+};
+let node = {
+  val: 0,
+  left: null,
+  right: {
+    val: 0,
+    left: null,
+    right: {
+      val: 0,
+      left: null,
+      right: {
+        val: 0,
+        left: null,
+        right: {
+          val: 0,
+          left: null,
+          right: null
+        }
+      }
+    }
+  }
+}
+console.log(minCameraCover(node))
