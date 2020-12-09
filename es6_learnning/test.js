@@ -3,7 +3,7 @@ var tmpl = city => {
     <table>
     ${city.map(value =>{
         return `
-            <tr> 
+            <tr>
                 <td>${value.pro}</td>
                 <td>${value.cityname}</td>
             </tr>
@@ -21,4 +21,4 @@ var citys = [
         cityname: '武汉'
     }
 ];
-console.log(tmpl(citys));
+tmpl(citys);
