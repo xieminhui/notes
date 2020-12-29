@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        .svg-ct {
+            display: inline-block;
+        }
+        svg {
+            stroke: #000;
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+    </style>
+</head>
+<body>
+    <section class="svg-ct">
+        <h2>line</h2>
+        <svg width="250" height="200">
+            <line x1="3" y1="3" x2="48" y2="3"></line>
+            <line x1="3" y1="19" x2="65" y2="19"></line>
+            <line x1="3" y1="35" x2="48" y2="35"></line>
+            <line x1="3" y1="51" x2="65" y2="51"></line>
+        </svg>
+    </section>
+    <section class="svg-ct">
+        <h2>polyline</h2>
+        <svg width="250" height="200">
+            <polyline points="3 3 30 28 3 53"></polyline>
+        </svg>
+    </section>
+    <section class="svg-ct">
+        <h2>rect icon</h2>
+        <svg width="250" height="200">
+            <rect x=5 y=5 width=80 height=80></rect>
+            <line x1=5 y1=21 x2= 85 y2=21></line>
+            <line x1=22 y1=5 x2= 22 y2=19></line>
+        </svg>
+    </section>
+    <section class="svg-ct">
+        <h2>circle icon</h2>
+        <svg width="250" height="200">
+            <circle cx=40 cy=40 r=30></circle>
+            <line x1=40 y1=20 x2=40 y2=50></line>
+            <circle cx=40 cy=60 r=3  stroke-width=6></circle>
+        </svg>
+    </section>
+    <section class="svg-ct">
+        <h2>path icon</h2>
+        <svg width="250" height="200">
+            <path d="
+                M 18 3
+                L 46 3
+                L 46 40
+                L 61 40
+                L 32 68
+                L 3 40
+                L 18 40
+                Z
+            "></path>
+        </svg>
+    </section>
+</body>
+</html>
