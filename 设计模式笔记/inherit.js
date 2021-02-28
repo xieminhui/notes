@@ -148,6 +148,8 @@ function object (o) {
     return new F();
 }
 
+
+    // 继承原型方法
   function inheritPrototype (subType, superType) {
     var prototype = object(superType.prototype);
     prototype.construtor = subType;
