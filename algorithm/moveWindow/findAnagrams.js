@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-05-21 16:28:05
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-05-21 16:34:05
+ * @LastEditTime: 2021-03-01 16:07:37
  * @description:
  */
 
@@ -73,7 +73,7 @@ function findAnagrams (str, target) {
       let key = str[left];
       if (right - left == target.length) {
         stack.push(left);
-      }
+    }
       if (Tmap.has(key)) {
         winMap.set(key, winMap.get(key) - 1);
       }
@@ -84,6 +84,6 @@ function findAnagrams (str, target) {
     }
   }
 
-  return minLen == Infinity ? '' : str.substr(start, minLen)
+  return stack;
 
 }
