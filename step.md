@@ -239,145 +239,9 @@ HKEY_LOCAL_MACHINE\SOFTWARE\   Microsoft\Internet Explorer\MAIN\FeatureControl\F
 初始化数据。
 
 ### 9. [cookie详解](https://segmentfault.com/a/1190000004556040)
-### 10.javascript内存牵扯的东西
-> js就两种值，引用或基本类型值。基本的数据类型五种：`undefined，null,
-boolen,Number,String`，这五种是值来访问操作的，即可以直接操作内存中的那个值。
 
->函数传递是按值来传递的，参数是对象的时候即使是按值传递，它也是按引用来的。
-````angular2html
-var num = 20;
-function add(count){
-    count += 10;
-    return count;
-}
-var result = add(num);
-console.log(num);//20
-console.log(result);//30
-
-//----------------对于对象----------------------
-function setName(obj){
-    obj.name = 'Eason';
-}
-var person = new Object();
-setName(person);
-console.log(person.name);//eason
-
-//****************************************
-        说明对象参数按引用传递了
-//*******************************
-
-//列子2
-function setName(obj){
-    obj.name = 'Eason';
-    obj = new Object();
-    obj.name = ’chenlaoshi';
-}
-var person = new Object();
-setName(person);
-console.log(person.name);//eason
-
-why?!!!!!!!!!!!!!!!!!
-````
-我们解释下例子2为什么是这样，看图
-![](image/对象参数传递.png)
-其实上述代码就是下面这样
-```
-function setName(){
-    var obj = person;
-    obj.name = 'Eason';
-    obj = new Object();
-    obj.name = ’chenlaoshi';
-}
-var person = new Object();
-setName(person);
-console.log(person.name);//eason
-```
-> 执行环境跟作用域链。执行环境定义了变量和函数有权访问的数据，其实就是作用域每
-个环境都有一个与之关联的变量对象，这个环境中所有定义的变量和函数都保存在
-这变量对象中。作用域链就是将父子级别的上下文变量对象连接起来。
-> AO：Activetion Object（活动对象）
-AO：activation object（活动对象）
-AO对应的是函数创建阶段，JS解析引擎进行预解析时，
-所有的变量和函数的声明，统称为activation Object。该变量与函数初始化上下文相关,这个是不可访问的，只有变成vo才能访问。
-知道自己的数据存储在哪里，并且知道如何访问。
-它存储着在上下文中声明的以下内容：
-+ 变量 (var, 变量声明);
-+ 函数声明 (FunctionDeclaration, 缩写为FD);
-+ 函数的形参
-```
-function a(x,y){
-    var b=x+y;
-    function say(){
-      console.log(b);
-    }
-
-}
-//b, say, x, y组合的对象是ao,不过该对象基本都是undefined
-```
-VO对应的是函数执行阶段，当函数被调用执行时，会建立一个执行上下文，
-该执行上下文包含了函数所需的所有变量，该变量共同组成了一个新的对象就是
-Variable  Object。该对象包含了：
-+ 函数的所有局部变量
-+ 函数的所有命名参数
-+ 函数的参数集合
-+ 函数的this指向
-```angular2html
-
-a(4,5);
-//  我用JS对象来表示vO
-//  vO = {
-//	    this : window,
-//	    arguments : [4,5],
-//	    x : 4,
-//	    y : 5,
-//	    say : ,
-//	    b : undefined
-//  }
-```
-当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）
-来保证对执行环境有权访问的变量和函数的有序访问。作用域第一个对象始终是当前执行
-代码所在环境的变量对象（VO）
-```
-function a(x,y){
-	var sum = x + y;
-	return sum;
-}
-```
-假设函数是在全局作用域中创建的，在函数a创建的时候，它的作用域链填入全局对象,
-全局对象中有所有全局变量，此时的全局变量就是VO。此时的作用域链就是：
-```angular2html
-此时作用域链（Scope Chain）只有一级,就为Global Object
-
-	scope(add) -> Global Object(VO)
-	
-	VO = {
-		this : window,
-		add : 
-	}
-```
-![](image/scope-chain1.png)
-如果是函数执行阶段，那么将其vo作为作用域链第一个对象
-，第二个对象是上级函数的执行上下文VO，下一个对象依次类推。
-```angular2html
- var tatal=a(5,10);
-```
-![](image/scope-chain2.png)
-
-> 内存回收
-+ 标记清除（mark and sweep）:当变量进入执行环境的时候(调用)，比如函数中声明一个变量，
-垃圾回收器将其标记为“进入环境”，当变量离开环境的时候（函数执行结束）将其标记为
-“离开环境”。这时候就会回收变量所占用内存。
-+ 引用计数：引用计数的策略是跟踪记录每个值被使用的次数，当声明了一个变量并将一
-个引用类型赋值给该变量的时候这个值的引用次数就加1，如果该变量的值变成了另外一个
-，则这个值得引用次数减1，当这个值的引用次数变为0的时候，说明没有变量在使用，这
-个值没法被访问了，因此可以将其占用的空间回收。
-
-> 闭包带来的问题：造成变量不能被回收。ie9下只要涉及
-com的都是使用引用计数的方式，闭包就会导致引用计数一直存在。
-现在我感觉基本都不用担心这个东西了。
-
-### 11.[XMLHttpRequest](https://segmentfault.com/a/1190000004322487)
-### 12. cookie和session
+### 10.[XMLHttpRequest](https://segmentfault.com/a/1190000004322487)
+### 11. cookie和session
 > 产生原因：http协议是无状态的，所以服务器是无法知道下次跟他交互的是谁，
 就无法保持客户端和服务区端的通话。cookie和session为此产生。
 + cookie:大渣都叫他甜甜圈。是服务器保存在客户端的加密后的数据，一般是加密后的用户名，
@@ -401,12 +265,12 @@ session id直接附加在URL路径的后面。还有一种技术叫做表单隐�
 一个会话cookie。
 - cookie可以跨域。
 
-### 13.[web缓存](https://segmentfault.com/a/1190000006741200)
-### 14.[不同浏览器flash与其他元素发生覆盖汇总及解决](http://www.w3help.org/zh-cn/causes/RX8012)
+### 12.[web缓存](https://segmentfault.com/a/1190000006741200)
+### 13.[不同浏览器flash与其他元素发生覆盖汇总及解决](http://www.w3help.org/zh-cn/causes/RX8012)
 
-### 15. [JavaScript设计模式](https://juejin.im/entry/58c280b1da2f600d8725b887)
+### 14. [JavaScript设计模式](https://juejin.im/entry/58c280b1da2f600d8725b887)
 
-### 16. 闭包的优缺点
+### 15. 闭包的优缺点
 ```
     function a(){
         var b = 1,c;
@@ -432,7 +296,7 @@ function a(){
         }
     }
 ```
-### 17.[深度拷贝和浅拷贝](https://github.com/wengjq/Blog/issues/3)
+### 16.[深度拷贝和浅拷贝](https://github.com/wengjq/Blog/issues/3)
 http://www.imooc.com/article/19828
 http://www.cnblogs.com/imwtr/p/4666181.html
 ```
@@ -454,9 +318,9 @@ http://www.cnblogs.com/imwtr/p/4666181.html
        }
        r
 ```
-### 18. jquery自定义插件方法`$.fn.myplungin`是扩展在jquery的原型链上的.即所有jQuery对象都拥有了myPlugin方法.
+### 17. jquery自定义插件方法`$.fn.myplungin`是扩展在jquery的原型链上的.即所有jQuery对象都拥有了myPlugin方法.
 
-### 19 amd,cmd,umd,commonjs
+### 18 amd,cmd,umd,commonjs
 + amd: 异步加载模块，并且是依赖前置执行，所有的依赖下载完在执行完毕在执行callback
 + cmd: 通用模块定义,依赖就近，所以在define函数中不些依赖，只有使用的时候才去require
 ```
@@ -486,81 +350,29 @@ define(function(require,exports,module) {
         
 </strong>
 
-### 20. vue多次更改值只渲染一次的原理。
-https://juejin.im/post/5a45fdeb6fb9a044ff31c9a8
 
-```
-
-//mouted下
-    this.inputName = 1;
-    setTimeout(() => {
-      this.inputName = 2;
-    }, 0);
-    
-    this.inputName = 1;
-    new Promise((resolove)=>{
-      resolove();
-    }).then(() => {
-      this.inputName = 2;
-    })
-  
-```
-第一段代码会触发两次dom更新，第二端会触发一次，这里涉及到宏任务跟微任务这两个概念，宏任务与微任务产生的方式并不相同，浏览器环境下setImmediate，MessageChannel，setTimeout会产生宏任务，而MutationObserver ，Promise则会产生微任务。
->宏任务微任务：
-
-https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/?utm_source=html5weekly
-
-https://segmentfault.com/a/1190000016022069
-
-https://github.com/aooy/blog/issues/5
-> 微任务产生微任务是会一直执行的，不会等到下次event loop
-
-微任务的优先级是比宏任务高的，所以它会先执行。vue中dom的更新是异步的，
-
-第一段代码中，setTimeout产生宏任务，会在第二次事件循环中，promise产生微任务，会在本次事件循环中，在调用栈空了之后会执行所有的微任务，微任务执行完毕就会渲染dom，渲染完成在进行下轮事件循环。而vue的dom更新是用微任务还是宏任务是它决定的，用了v-on-click的时候，里面的回调就是用宏任务，在mouted这里则用微任务，那么这里setTimout用宏任务，而vue更新dom用微任务，那么就会出现两次dom渲染。在promise中，都是微任务，而vue更新dom也用微任务，这两个就会只在一次event loop中执行完毕，更新一次dom。
-> vue更新dom的操作，像多次赋值这种，它内部的queue只会压入一个watcher，用id来区分。那他怎么知道最后一次更新的值呢，原理是他会在nexttick回调，执行wacther.run()，再去那vm保存的最后一个值，用来更新dom。
-```
-/**
- * 将watcher实例推入queue(一个数组)中，
- * 被has对象标记的watcher不会重复被加入到队列
- */
-export function queueWatcher (watcher: Watcher) {
-  const id = watcher.id
-  // 判断watcher是否被标记过，has为一个对象，此方案类似数组去重时利用object保存数组值
-  if (has[id] == null) {
-    // 没被标记过的watcher进入分支后被标记上
-    has[id] = true
-    if (!flushing) {
-      // 推入到队列中
-      queue.push(watcher)
-    } else {
-      // 如果是在flush队列时被加入，则根据其watcher的id将其插入正确的位置
-      // 如果不幸该watcher已经错过了被调用的时机则会被立即调用
-      // 稍后看flushSchedulerQueue这个函数会理解这两段注释的意思
-      let i = queue.length - 1
-      while (i > index && queue[i].id > watcher.id) {
-        i--
-      }
-      queue.splice(i + 1, 0, watcher)
-    }
-    // queue the flush
-    if (!waiting) {
-      waiting = true
-     // 我们关心的重点nextTick函数，其实我们写的this.$nextTick也是调用的此函数
-      nextTick(flushSchedulerQueue)
-    }
-  }
-}
-```
-
-### 21. ios重绘bug
+### 19. ios重绘bug
 + 现象：移动端h5卡片堆叠移动，移动之后发现样式已经覆盖上去，可是无法滚动，这时候点击vconsole，发现可以滚动了。
 + 问题： 点击vconsole的时候，body增加了dom节点，发生了重排和跟重绘，这时候将卡片的样式也重绘了一次，正常。
 + 解决：这时候只能强制浏览器去重排跟重绘，改变display去强制重绘，问题解决，网上说的ios无法滚动，可以改变子元素的高度这些来解决，本质原理也是重绘。
 
-### 22. 如何突破浏览器并发数限制
+### 20. 如何突破浏览器并发数限制
 + 将相同的资源使用不同的域名请求。
 
-### 23.拦截console.log(xhr),类似这种
+### 21.拦截console.log(xhr),类似这种
 + 保存原函数，重写函数，自定处理完毕，请求时再用回去
 + `var _console = window.console.log; window.console.log = funtion() {//your code;  _console('111')  }`
+
+### 前端性能优化
++ js,css，图片压缩，发布cdn
++ 减少js的公用vendor的大小，tree shake,按需打包
++ webpack chunk的懒加载
++ css放在头部，js放底部，先渲染dom
++ 域名发散，解决同一个域名下只有6个并发的问题，解决请求队列阻塞
++ 升级到http2
++ 小图片用base64
++ 合理利用http缓存
++ 用chrome的performance观察页面渲染过程，减少长任务，合理分割
++ 大计算量的考虑web worker
++ 动画尽量用css3(transfrom3d)动画，js用requestAnimationFrame
++ 
