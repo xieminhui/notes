@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-24 17:32:29
  * @LastEditors: xieminhui
- * @LastEditTime: 2020-05-28 10:12:13
+ * @LastEditTime: 2021-03-16 17:46:02
  * @description:
  */
 
@@ -72,3 +72,40 @@ console.log(quickSort2(arr, 0, arr.length - 1));
 
 
 module.exports.quickSort = quickSort;
+
+
+ 
+// 题目：输入 n 个整数，找出其中最小的 K 个数。例如输入 4,5,1,6,2,7,3,8 这8个数字，则最小的4个数字是 1,2,3,4 。
+// // 第二种思路是由于我们只需要获得最小的 k 个数，这 k 个数不一定是按序排序的。因此我们可以使用快速排序中的 part
+// ition函数来实现。每一次选择一个枢纽值，将数组分为比枢纽值大和比枢纽值小的两个部分，判断枢纽值的位置，如果该枢
+// 纽值的位置为 k-1 的话，那么枢纽值和它前面的所有数字就是最小的 k 个数。如果枢纽值的位置小于 k-1 的话，假设枢
+// 纽值的位置为 n-1，那么我们已经找到了前 n 小的数字了，我们就还需要到后半部分去寻找后半部分 k-n 小的值，进行划
+// 分。当该枢纽值的位置比 k-1大时，说明最小的 k 个值还在左半部分，我们需要继续对左半部分进行划分。这一种方法的平
+// 均时间复杂度为 O(n)。
+let ret = [];
+function find (arr, k) {
+  if(arr.length <= 1) return arr;
+  let mid = arr[0];
+  let left = [];
+  let right = [];
+  for(let i = 1; i < arr.length; i++) {
+    if(arr[i] >= mid) {
+      right.push(arr[i]);
+    } else {
+      left.push(arr[i]);
+    }
+  }
+  if(left.length == k-1) {
+    ret =  ret.concat(left,mid);
+    return ;
+  }else if(left.length < k-1) {
+    ret = ret.concat(left, mid);
+    find(right, k-left.length-1)
+  }else if(left.length == 0) {
+    find(right, k);
+  } else if(left.length > k -1) {
+    find(left, k);
+  }
+}
+
+find([4,5,1,6,2,7,3,8], 6)
