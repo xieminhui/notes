@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-23 14:20:35
- * @LastEditors: xieminhui
- * @LastEditTime: 2020-05-11 11:13:27
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-12-25 12:18:46
  * @description:
  */
 
@@ -141,3 +141,17 @@ var preorder = function (root) {
   }
   return arr1;
 };
+
+exports.createTree = function  createTree (arr){ // 创建二叉树
+  let tree = new TreeNode(arr[0])
+  let Nodes = [tree]
+  let i = 1
+  for (let node of Nodes){
+      Nodes.push(node.left = new TreeNode (arr[i]))
+      i += 1
+      if (i == arr.length) return tree
+      Nodes.push(node.right = new TreeNode(arr[i]))
+      i += 1
+      if (i == arr.length) return tree
+  }
+}

@@ -1,11 +1,11 @@
 /*
  * @Date: 2020-04-23 15:12:14
- * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-23 15:53:37
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-12-23 22:43:24
  * @description:
  */
 
-// define Queue
+// define 
 function Queue () {
   this.data = [];
 }
@@ -35,9 +35,9 @@ Queue.prototype.isEmpty = function () {
   if (this.data.length == 0) {
     return true;
   }
-  else {
-    return false;
-  }
+ 
+  return false;
+  
 }
 
 module.exports.Queue = Queue

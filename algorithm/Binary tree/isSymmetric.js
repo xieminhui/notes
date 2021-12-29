@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-23 14:21:01
- * @LastEditors: xieminhui
- * @LastEditTime: 2020-04-23 15:13:36
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-12-23 22:38:53
  * @description:
  */
 
@@ -72,7 +72,11 @@ function middleTraverse (node, level, arr) {
 
 // ======================== ================================
 // 非递归解法就是用queue来存
-
+//      1
+//     / \
+//    2   2
+//   / \ / \
+//  3  4 4  3
 const Queue = require('../Queue')
 
 var isSymmetric = function (root) {

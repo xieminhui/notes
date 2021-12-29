@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-15 15:04:41
- * @LastEditors: xieminhui
- * @LastEditTime: 2020-05-11 17:27:00
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-12-24 22:57:30
  * @description:
  */
 
@@ -177,7 +177,7 @@ class myPromise {
       let values = [];
       let connt = 0;
       for (let [i, p] of list.entries()) {
-        this.resolve(p).then(res => {
+        myPromise.resolve(p).then(res => {
           values[i] = res;
           count++;
           // 等到所有的promise都fulfilled之后就可以resolve
@@ -186,6 +186,25 @@ class myPromise {
           reject(err);
         })
       }
+    })
+  }
+
+  static retry (promise, limit) {
+    let count = 0;
+    return new myPromise((resolve, reject) => {
+      function tryFn() {
+        myPromise.resolve(promise).then(res => {
+          resolve(res);
+        }).catch(err => {
+          count++;
+          if(count < limit) {
+            tryFn();
+          } else {
+            reject(err);
+          }
+        })
+      }
+      tryFn();
     })
   }
 
